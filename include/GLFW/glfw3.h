@@ -322,6 +322,10 @@ extern "C" {
 #define GLFW_KEY_GRAVE_ACCENT       96  /* ` */
 #define GLFW_KEY_WORLD_1            161 /* non-US #1 */
 #define GLFW_KEY_WORLD_2            162 /* non-US #2 */
+#define GLFW_KEY_WORLD_3            163 /* non-US #3 */
+#define GLFW_KEY_WORLD_4            164 /* non-US #4 */
+#define GLFW_KEY_WORLD_5            165 /* non-US #5 */
+
 
 /* Function keys */
 #define GLFW_KEY_ESCAPE             256

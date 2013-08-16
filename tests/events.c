@@ -100,6 +100,9 @@ static const char* get_key_name(int key)
         case GLFW_KEY_SLASH:        return "SLASH";
         case GLFW_KEY_WORLD_1:      return "WORLD 1";
         case GLFW_KEY_WORLD_2:      return "WORLD 2";
+        case GLFW_KEY_WORLD_3:      return "WORLD 3";
+        case GLFW_KEY_WORLD_4:      return "WORLD 4";
+        case GLFW_KEY_WORLD_5:      return "WORLD 5";
 
         // Function keys
         case GLFW_KEY_ESCAPE:       return "ESCAPE";

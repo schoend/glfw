@@ -167,6 +167,73 @@ static int translateKey(WPARAM wParam, LPARAM lParam)
             case VK_DELETE:   return GLFW_KEY_KP_DECIMAL;
             default:          break;
         }
+
+        switch (HIWORD(lParam) & 0xFF)
+        {
+
+        // handle printable chars except space in a language independent way,
+        // using scancodes rather than virtual keys
+        // as virtual keys are language dependent.
+        // Printable keys are mapped according to US layout.
+
+        // Row 0:
+        case 0x29:             return GLFW_KEY_GRAVE_ACCENT;
+        case 0x02:             return GLFW_KEY_1;
+        case 0x03:             return GLFW_KEY_2;
+        case 0x04:             return GLFW_KEY_3;
+        case 0x05:             return GLFW_KEY_4;
+        case 0x06:             return GLFW_KEY_5;
+        case 0x07:             return GLFW_KEY_6;
+        case 0x08:             return GLFW_KEY_7;
+        case 0x09:             return GLFW_KEY_8;
+        case 0x0A:             return GLFW_KEY_9;
+        case 0x0B:             return GLFW_KEY_0;
+        case 0x0C:             return GLFW_KEY_MINUS;
+        case 0x0D:             return GLFW_KEY_EQUAL;
+
+        // Row 1:
+        case 0x10:             return GLFW_KEY_Q;
+        case 0x11:             return GLFW_KEY_W;
+        case 0x12:             return GLFW_KEY_E;
+        case 0x13:             return GLFW_KEY_R;
+        case 0x14:             return GLFW_KEY_T;
+        case 0x15:             return GLFW_KEY_Y;
+        case 0x16:             return GLFW_KEY_U;
+        case 0x17:             return GLFW_KEY_I;
+        case 0x18:             return GLFW_KEY_O;
+        case 0x19:             return GLFW_KEY_P;
+        case 0x1A:             return GLFW_KEY_LEFT_BRACKET;
+        case 0x1B:             return GLFW_KEY_RIGHT_BRACKET;
+        // We do not map 0x2B as this is only on US - use vKeys for this to prevent confusion with 0x56
+
+        // Row 2:
+        case 0x1E:             return GLFW_KEY_A;
+        case 0x1F:             return GLFW_KEY_S;
+        case 0x20:             return GLFW_KEY_D;
+        case 0x21:             return GLFW_KEY_F;
+        case 0x22:             return GLFW_KEY_G;
+        case 0x23:             return GLFW_KEY_H;
+        case 0x24:             return GLFW_KEY_J;
+        case 0x25:             return GLFW_KEY_K;
+        case 0x26:             return GLFW_KEY_L;
+        case 0x27:             return GLFW_KEY_SEMICOLON;
+        case 0x28:             return GLFW_KEY_APOSTROPHE;
+
+        // Row 3:
+        case 0x2C:             return GLFW_KEY_Z;
+        case 0x2D:             return GLFW_KEY_X;
+        case 0x2E:             return GLFW_KEY_C;
+        case 0x2F:             return GLFW_KEY_V;
+        case 0x30:             return GLFW_KEY_B;
+        case 0x31:             return GLFW_KEY_M;
+        case 0x32:             return GLFW_KEY_N;
+        case 0x33:             return GLFW_KEY_COMMA;
+        case 0x34:             return GLFW_KEY_PERIOD;
+        case 0x35:             return GLFW_KEY_SLASH;
+
+
+        default:               break;
+        }
     }
 
     // Check which key was pressed or released
@@ -305,57 +372,17 @@ static int translateKey(WPARAM wParam, LPARAM lParam)
         case VK_ADD:           return GLFW_KEY_KP_ADD;
         case VK_DECIMAL:       return GLFW_KEY_KP_DECIMAL;
 
-        // Printable keys are mapped according to US layout
+        // printables handled via virtual keys
         case VK_SPACE:         return GLFW_KEY_SPACE;
-        case 0x30:             return GLFW_KEY_0;
-        case 0x31:             return GLFW_KEY_1;
-        case 0x32:             return GLFW_KEY_2;
-        case 0x33:             return GLFW_KEY_3;
-        case 0x34:             return GLFW_KEY_4;
-        case 0x35:             return GLFW_KEY_5;
-        case 0x36:             return GLFW_KEY_6;
-        case 0x37:             return GLFW_KEY_7;
-        case 0x38:             return GLFW_KEY_8;
-        case 0x39:             return GLFW_KEY_9;
-        case 0x41:             return GLFW_KEY_A;
-        case 0x42:             return GLFW_KEY_B;
-        case 0x43:             return GLFW_KEY_C;
-        case 0x44:             return GLFW_KEY_D;
-        case 0x45:             return GLFW_KEY_E;
-        case 0x46:             return GLFW_KEY_F;
-        case 0x47:             return GLFW_KEY_G;
-        case 0x48:             return GLFW_KEY_H;
-        case 0x49:             return GLFW_KEY_I;
-        case 0x4A:             return GLFW_KEY_J;
-        case 0x4B:             return GLFW_KEY_K;
-        case 0x4C:             return GLFW_KEY_L;
-        case 0x4D:             return GLFW_KEY_M;
-        case 0x4E:             return GLFW_KEY_N;
-        case 0x4F:             return GLFW_KEY_O;
-        case 0x50:             return GLFW_KEY_P;
-        case 0x51:             return GLFW_KEY_Q;
-        case 0x52:             return GLFW_KEY_R;
-        case 0x53:             return GLFW_KEY_S;
-        case 0x54:             return GLFW_KEY_T;
-        case 0x55:             return GLFW_KEY_U;
-        case 0x56:             return GLFW_KEY_V;
-        case 0x57:             return GLFW_KEY_W;
-        case 0x58:             return GLFW_KEY_X;
-        case 0x59:             return GLFW_KEY_Y;
-        case 0x5A:             return GLFW_KEY_Z;
-        case 0xBD:             return GLFW_KEY_MINUS;
-        case 0xBB:             return GLFW_KEY_EQUAL;
-        case 0xDB:             return GLFW_KEY_LEFT_BRACKET;
-        case 0xDD:             return GLFW_KEY_RIGHT_BRACKET;
         case 0xDC:             return GLFW_KEY_BACKSLASH;
-        case 0xBA:             return GLFW_KEY_SEMICOLON;
-        case 0xDE:             return GLFW_KEY_APOSTROPHE;
-        case 0xC0:             return GLFW_KEY_GRAVE_ACCENT;
-        case 0xBC:             return GLFW_KEY_COMMA;
-        case 0xBE:             return GLFW_KEY_PERIOD;
-        case 0xBF:             return GLFW_KEY_SLASH;
+        case 0xDE:             return GLFW_KEY_WORLD_3;
         case 0xDF:             return GLFW_KEY_WORLD_1;
         case 0xE2:             return GLFW_KEY_WORLD_2;
+        case 0xE3:             return GLFW_KEY_WORLD_4;
+        case 0xE4:             return GLFW_KEY_WORLD_5;
+
+
+
         default:               break;
     }
 
@@ -1127,7 +1154,8 @@ const char*_glfwPlatformGetKeyName(int key)
 {
     UINT charVK;
     WCHAR keyName[2];
-    int vkKey = 0;
+    int vkKey       = -1;
+    int scanCode    = -1;
     int length;
 
     free(_glfw.win32.keyName);
@@ -1135,65 +1163,77 @@ const char*_glfwPlatformGetKeyName(int key)
 
     switch( key )
     {
-        // Printable keys are handled via being turned into a win32 virtual key
+        // Printable keys are handled via being turned into a win32 virtual key or scancode
         // and then translated by MapVirtualKey.
         // This correctly translates certain keys where hardcoding would not
         // (A-Z are usually fine, but others may not be depending on locale).
-        case GLFW_KEY_SPACE:          vkKey = VK_SPACE; break;
-        case GLFW_KEY_0:              vkKey = 0x30; break;
-        case GLFW_KEY_1:              vkKey = 0x31; break;
-        case GLFW_KEY_2:              vkKey = 0x32; break;
-        case GLFW_KEY_3:              vkKey = 0x33; break;
-        case GLFW_KEY_4:              vkKey = 0x34; break;
-        case GLFW_KEY_5:              vkKey = 0x35; break;
-        case GLFW_KEY_6:              vkKey = 0x36; break;
-        case GLFW_KEY_7:              vkKey = 0x37; break;
-        case GLFW_KEY_8:              vkKey = 0x38; break;
-        case GLFW_KEY_9:              vkKey = 0x39; break;
-        case GLFW_KEY_A:              vkKey = 0x41; break;
-        case GLFW_KEY_B:              vkKey = 0x42; break;
-        case GLFW_KEY_C:              vkKey = 0x43; break;
-        case GLFW_KEY_D:              vkKey = 0x44; break;
-        case GLFW_KEY_E:              vkKey = 0x45; break;
-        case GLFW_KEY_F:              vkKey = 0x46; break;
-        case GLFW_KEY_G:              vkKey = 0x47; break;
-        case GLFW_KEY_H:              vkKey = 0x48; break;
-        case GLFW_KEY_I:              vkKey = 0x49; break;
-        case GLFW_KEY_J:              vkKey = 0x4A; break;
-        case GLFW_KEY_K:              vkKey = 0x4B; break;
-        case GLFW_KEY_L:              vkKey = 0x4C; break;
-        case GLFW_KEY_M:              vkKey = 0x4D; break;
-        case GLFW_KEY_N:              vkKey = 0x4E; break;
-        case GLFW_KEY_O:              vkKey = 0x4F; break;
-        case GLFW_KEY_P:              vkKey = 0x50; break;
-        case GLFW_KEY_Q:              vkKey = 0x51; break;
-        case GLFW_KEY_R:              vkKey = 0x52; break;
-        case GLFW_KEY_S:              vkKey = 0x53; break;
-        case GLFW_KEY_T:              vkKey = 0x54; break;
-        case GLFW_KEY_U:              vkKey = 0x55; break;
-        case GLFW_KEY_V:              vkKey = 0x56; break;
-        case GLFW_KEY_W:              vkKey = 0x57; break;
-        case GLFW_KEY_X:              vkKey = 0x58; break;
-        case GLFW_KEY_Y:              vkKey = 0x59; break;
-        case GLFW_KEY_Z:              vkKey = 0x5A; break;
-        case GLFW_KEY_MINUS:          vkKey = 0xBD; break;
-        case GLFW_KEY_EQUAL:          vkKey = 0xBB; break;
-        case GLFW_KEY_LEFT_BRACKET:   vkKey = 0xDB; break;
-        case GLFW_KEY_RIGHT_BRACKET:  vkKey = 0xDD; break;
-        case GLFW_KEY_BACKSLASH:      vkKey = 0xDC; break;
-        case GLFW_KEY_SEMICOLON:      vkKey = 0xBA; break;
-        case GLFW_KEY_APOSTROPHE:     vkKey = 0xDE; break;
-        case GLFW_KEY_GRAVE_ACCENT:   vkKey = 0xC0; break;
-        case GLFW_KEY_COMMA:          vkKey = 0xBC; break;
-        case GLFW_KEY_PERIOD:         vkKey = 0xBE; break;
-        case GLFW_KEY_SLASH:          vkKey = 0xBF; break;
-        case GLFW_KEY_WORLD_1:        vkKey = 0xDF; break;
-        case GLFW_KEY_WORLD_2:        vkKey = 0xE2; break;
-        default:               break;
+        case GLFW_KEY_GRAVE_ACCENT:   scanCode = 0x29;        break;
+        case GLFW_KEY_1:              scanCode = 0x02;        break;
+        case GLFW_KEY_2:              scanCode = 0x03;        break;
+        case GLFW_KEY_3:              scanCode = 0x04;        break;
+        case GLFW_KEY_4:              scanCode = 0x05;        break;
+        case GLFW_KEY_5:              scanCode = 0x06;        break;
+        case GLFW_KEY_6:              scanCode = 0x07;        break;
+        case GLFW_KEY_7:              scanCode = 0x08;        break;
+        case GLFW_KEY_8:              scanCode = 0x09;        break;
+        case GLFW_KEY_9:              scanCode = 0x0A;        break;
+        case GLFW_KEY_0:              scanCode = 0x0B;        break;
+        case GLFW_KEY_MINUS:          scanCode = 0x0C;        break;
+        case GLFW_KEY_EQUAL:          scanCode = 0x0D;        break;
+                                      
+        case GLFW_KEY_Q:              scanCode = 0x10;        break;
+        case GLFW_KEY_W:              scanCode = 0x11;        break;
+        case GLFW_KEY_E:              scanCode = 0x12;        break;
+        case GLFW_KEY_R:              scanCode = 0x13;        break;
+        case GLFW_KEY_T:              scanCode = 0x14;        break;
+        case GLFW_KEY_Y:              scanCode = 0x15;        break;
+        case GLFW_KEY_U:              scanCode = 0x16;        break;
+        case GLFW_KEY_I:              scanCode = 0x17;        break;
+        case GLFW_KEY_O:              scanCode = 0x18;        break;
+        case GLFW_KEY_P:              scanCode = 0x19;        break;
+        case GLFW_KEY_LEFT_BRACKET:   scanCode = 0x1A;        break;
+        case GLFW_KEY_RIGHT_BRACKET:  scanCode = 0x1B;        break;
+                                      
+        case GLFW_KEY_A:              scanCode = 0x1E;        break;
+        case GLFW_KEY_S:              scanCode = 0x1F;        break;
+        case GLFW_KEY_D:              scanCode = 0x20;        break;
+        case GLFW_KEY_F:              scanCode = 0x21;        break;
+        case GLFW_KEY_G:              scanCode = 0x22;        break;
+        case GLFW_KEY_H:              scanCode = 0x23;        break;
+        case GLFW_KEY_J:              scanCode = 0x24;        break;
+        case GLFW_KEY_K:              scanCode = 0x25;        break;
+        case GLFW_KEY_L:              scanCode = 0x26;        break;
+        case GLFW_KEY_SEMICOLON:      scanCode = 0x27;        break;
+        case GLFW_KEY_APOSTROPHE:     scanCode = 0x28;        break;
+                                      
+        case GLFW_KEY_Z:              scanCode = 0x2C;        break;
+        case GLFW_KEY_X:              scanCode = 0x2D;        break;
+        case GLFW_KEY_C:              scanCode = 0x2E;        break;
+        case GLFW_KEY_V:              scanCode = 0x2F;        break;
+        case GLFW_KEY_B:              scanCode = 0x30;        break;
+        case GLFW_KEY_M:              scanCode = 0x31;        break;
+        case GLFW_KEY_N:              scanCode = 0x32;        break;
+        case GLFW_KEY_COMMA:          scanCode = 0x33;        break;
+        case GLFW_KEY_PERIOD:         scanCode = 0x34;        break;
+        case GLFW_KEY_SLASH:          scanCode = 0x35;        break;
+
+        case GLFW_KEY_SPACE:          vkKey = VK_SPACE;       break;
+        case GLFW_KEY_BACKSLASH:      vkKey = 0xDC;           break;
+        case GLFW_KEY_WORLD_1:        vkKey = 0xDF;           break;
+        case GLFW_KEY_WORLD_2:        vkKey = 0xE2;           break;
+        case GLFW_KEY_WORLD_3:        vkKey = 0xDE;           break;
+        case GLFW_KEY_WORLD_4:        vkKey = 0xE3;           break;
+        case GLFW_KEY_WORLD_5:        vkKey = 0xE4;           break;
+        default:                                              break;
     }
 
-    if( vkKey )
+    if( vkKey >= 0 || scanCode >= 0 )
     {
+        if( scanCode >= 0 )
+        {
+            // first convert scan code to vk
+            vkKey = MapVirtualKey(scanCode, MAPVK_VSC_TO_VK );
+        }
         charVK = MapVirtualKey(vkKey, MAPVK_VK_TO_CHAR );
         if (charVK)
         {
@@ -1289,6 +1329,7 @@ const char*_glfwPlatformGetKeyName(int key)
         case GLFW_KEY_SLASH:        return "SLASH";
         case GLFW_KEY_WORLD_1:      return "WORLD 1";
         case GLFW_KEY_WORLD_2:      return "WORLD 2";
+        case GLFW_KEY_WORLD_3:      return "WORLD 3";
 
         // Function keys
         case GLFW_KEY_ESCAPE:       return "ESCAPE";
