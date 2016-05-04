@@ -613,6 +613,9 @@ static LRESULT CALLBACK windowProc(HWND hWnd, UINT uMsg,
 
         case WM_SIZE:
         {
+            _glfwInputFramebufferSize(window, LOWORD(lParam), HIWORD(lParam));
+            _glfwInputWindowSize(window, LOWORD(lParam), HIWORD(lParam));
+
             if (_glfw.cursorWindow == window)
             {
                 if (window->cursorMode == GLFW_CURSOR_DISABLED)
@@ -637,8 +640,6 @@ static LRESULT CALLBACK windowProc(HWND hWnd, UINT uMsg,
                 _glfwInputWindowIconify(window, GLFW_FALSE);
             }
 
-            _glfwInputFramebufferSize(window, LOWORD(lParam), HIWORD(lParam));
-            _glfwInputWindowSize(window, LOWORD(lParam), HIWORD(lParam));
             return 0;
         }
 
